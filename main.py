@@ -63,6 +63,7 @@ for collector_class, collector_control in collectors:
         args=[collector_class, collector_control, database],
         coalesce=True,
         max_instances=1,
+        next_run_time=datetime.now(),
         seconds=COLLECTION_INTERVAL,
     )
 
