@@ -1,4 +1,6 @@
 import logging
+from datetime import datetime
+from datetime import timedelta
 from time import sleep
 
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -15,6 +17,10 @@ from iot_collector.mixins import CollectorControl
 
 
 log = logging.getLogger(__name__)
+
+COLLECTION_INTERVAL = 60 * 5
+
+TIME_LIMIT = datetime.now() + timedelta(hours=1)
 
 
 def run_collector(
@@ -57,12 +63,11 @@ for collector_class, collector_control in collectors:
         args=[collector_class, collector_control, database],
         coalesce=True,
         max_instances=1,
-        seconds=1,
+        seconds=COLLECTION_INTERVAL,
     )
 
 
 scheduler.start()
 
-
-while True:
+while datetime.now() < TIME_LIMIT:
     sleep(1)
