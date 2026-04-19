@@ -15,7 +15,9 @@ from iot_collector.database import Database
 log = logging.getLogger(__name__)
 
 
-def run_collector(collector_class, collector_control) -> None:
+def run_collector(
+    collector_class: Collector, collector_control: CollectorControl, database: Database
+) -> None:
     collector = collector_class(collector_control)
 
     try:
@@ -50,7 +52,7 @@ for collector_class, collector_control in collectors:
     scheduler.add_job(
         run_collector,
         'interval',
-        args=[collector_class, collector_control],
+        args=[collector_class, collector_control, database],
         coalesce=True,
         max_instances=1,
         seconds=1,
