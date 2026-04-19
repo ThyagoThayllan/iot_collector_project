@@ -27,8 +27,6 @@ def run_collector(collector_class, collector_control) -> None:
     if not data:
         return None
 
-    database = Database()
-
     try:
         collector_control.save(data=data, database=database)
     except Exception as exc:
@@ -47,6 +45,7 @@ collectors = [
     (SolarMonitoringStationCollector, SolarMonitoringStationControl),
 ]
 
+database = Database()
 
 for collector_class, collector_control in collectors:
     scheduler.add_job(
