@@ -7,8 +7,6 @@ from iot_collector.models.mixins import Base
 
 DATABASE_URL = 'sqlite:///db/db.db'
 
-engine = create_engine(DATABASE_URL, echo=False)
-
 
 class Database:
     def __init__(self) -> None:
