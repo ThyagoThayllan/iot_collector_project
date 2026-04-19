@@ -66,7 +66,6 @@ for collector_class, collector_control in collectors:
         seconds=COLLECTION_INTERVAL,
     )
 
-
 scheduler.start()
 
 while datetime.now() < TIME_LIMIT:
