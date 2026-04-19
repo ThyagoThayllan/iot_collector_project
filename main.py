@@ -33,10 +33,7 @@ def run_collector(collector_class, collector_control) -> None:
         log.exception(f'An error occurred while saving {collector_class.__name__}: {exc}')
         return None
 
-    log.info(f'{collector_class.__name__} collected succesfully!')
-
-
-scheduler = BackgroundScheduler()
+    print(f'{collector_class.__name__} collected succesfully!')
 
 
 collectors = [
@@ -46,6 +43,8 @@ collectors = [
 ]
 
 database = Database()
+
+scheduler = BackgroundScheduler()
 
 for collector_class, collector_control in collectors:
     scheduler.add_job(
