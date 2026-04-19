@@ -16,15 +16,6 @@ Projeto em Python para coletar dados de dispositivos IoT de uma API externa, val
 - Coletas agendadas com `APScheduler` para executar a cada 5 minutos.
 - Tempo total de execução de coletas: 1 hora.
 
-## Dependências
-
-As dependências estão em `requirements.txt`:
-
-- `APScheduler`: agendamento periódico da coleta.
-- `Flask`: usado para rodar a API simuladora localmente.
-- `requests`: consumo dos endpoints da API.
-- `SQLAlchemy`: modelagem e persistência no banco.
-
 ## Estrutura principal
 
 - `api/simulator_iot_data.py`: API simuladora para onde as requisições são feitas.
@@ -34,6 +25,24 @@ As dependências estão em `requirements.txt`:
 - `iot_collector/database.py`: conexão com SQLite e inicialização do schema.
 - `iot_collector/models/models.py`: modelos ORM (dispositivos e leituras).
 - `main.py`: orquestração da execução dos coletores.
+
+## Banco de dados
+
+- Arquivo SQLite: `db/db.db`.
+- Tabelas principais:
+  - `device`
+  - `inverter_reading`
+  - `protection_relay_reading`
+  - `solar_monitoring_station_reading`
+
+## Dependências
+
+As dependências estão em `requirements.txt`:
+
+- `APScheduler`: agendamento periódico da coleta.
+- `Flask`: usado para rodar a API simuladora localmente.
+- `requests`: consumo dos endpoints da API.
+- `SQLAlchemy`: modelagem e persistência no banco.
 
 ## Requisitos
 
@@ -53,7 +62,7 @@ python -m venv .venv
 Windows (PowerShell):
 
 ```bash
-.\.venv\Scripts\Activate.ps1
+.\.venv\Scripts\activate
 ```
 
 Linux/macOS:
@@ -100,15 +109,6 @@ Comportamento padrão atual:
 - Nova coleta a cada 5 minutos.
 - Execução total por 1 hora.
 - Ao final, o processo encerra com a mensagem `Collection completed!`.
-
-## Banco de dados
-
-- Arquivo SQLite: `db/db.db`.
-- Tabelas principais:
-  - `device`
-  - `inverter_reading`
-  - `protection_relay_reading`
-  - `solar_monitoring_station_reading`
 
 ## Pontos de melhoria
 
