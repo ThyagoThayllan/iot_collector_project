@@ -70,3 +70,5 @@ scheduler.start()
 
 while datetime.now() < TIME_LIMIT:
     sleep(1)
+
+scheduler.shutdown(wait=True)
