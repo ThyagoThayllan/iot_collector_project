@@ -10,6 +10,8 @@ from iot_collector.collector_control import InverterCollectorControl
 from iot_collector.collector_control import ProtectionRelayControl
 from iot_collector.collector_control import SolarMonitoringStationControl
 from iot_collector.database import Database
+from iot_collector.mixins import Collector
+from iot_collector.mixins import CollectorControl
 
 
 log = logging.getLogger(__name__)
