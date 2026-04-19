@@ -123,5 +123,6 @@ Comportamento padrão atual:
 
 ## Observações importantes
 
+- Para facilitar a visualização da persistência dos dados no banco, a extensão SQLite Viwer pode ser utilizada.
 - A API simuladora gera tanto cenários válidos quanto cenários de erro (aprox. 20%), útil para testar a robustez da validação.
 - Se quiser alterar periodicidade e janela de execução, ajuste `COLLECTION_INTERVAL` e `TIME_LIMIT` em `main.py`.
