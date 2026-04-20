@@ -1,7 +1,8 @@
 from datetime import datetime
 from enum import Enum
 
-from sqlalchemy import DateTime, Enum as SAEnum
+from sqlalchemy import DateTime
+from sqlalchemy import Enum as SAEnum
 from sqlalchemy import Float
 from sqlalchemy import Integer
 from sqlalchemy import JSON
