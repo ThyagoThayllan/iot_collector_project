@@ -20,8 +20,6 @@ log = logging.getLogger(__name__)
 
 COLLECTION_INTERVAL = 60 * 5
 
-TIME_LIMIT = datetime.now() + timedelta(hours=1)
-
 
 def run_collector(
     collector_class: Collector, collector_control: CollectorControl, database: Database
@@ -47,6 +45,8 @@ def run_collector(
 
 
 def main() -> None:
+    time_limit = datetime.now() + timedelta(hours=1)
+
     collectors = [
         (InverterCollector, InverterCollectorControl),
         (ProtectionRelayCollector, ProtectionRelayControl),
@@ -70,7 +70,7 @@ def main() -> None:
 
     scheduler.start()
 
-    while datetime.now() < TIME_LIMIT:
+    while datetime.now() < time_limit:
         sleep(1)
 
     scheduler.shutdown(wait=True)
