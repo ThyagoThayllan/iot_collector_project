@@ -46,32 +46,37 @@ def run_collector(
     print(f'{collector_class.__name__} collected succesfully!')
 
 
-collectors = [
-    (InverterCollector, InverterCollectorControl),
-    (ProtectionRelayCollector, ProtectionRelayControl),
-    (SolarMonitoringStationCollector, SolarMonitoringStationControl),
-]
+def main() -> None:
+    collectors = [
+        (InverterCollector, InverterCollectorControl),
+        (ProtectionRelayCollector, ProtectionRelayControl),
+        (SolarMonitoringStationCollector, SolarMonitoringStationControl),
+    ]
 
-database = Database()
+    database = Database()
 
-scheduler = BackgroundScheduler()
+    scheduler = BackgroundScheduler()
 
-for collector_class, collector_control in collectors:
-    scheduler.add_job(
-        run_collector,
-        'interval',
-        args=[collector_class, collector_control, database],
-        coalesce=True,
-        max_instances=1,
-        next_run_time=datetime.now(),
-        seconds=COLLECTION_INTERVAL,
-    )
+    for collector_class, collector_control in collectors:
+        scheduler.add_job(
+            run_collector,
+            'interval',
+            args=[collector_class, collector_control, database],
+            coalesce=True,
+            max_instances=1,
+            next_run_time=datetime.now(),
+            seconds=COLLECTION_INTERVAL,
+        )
 
-scheduler.start()
+    scheduler.start()
 
-while datetime.now() < TIME_LIMIT:
-    sleep(1)
+    while datetime.now() < TIME_LIMIT:
+        sleep(1)
 
-scheduler.shutdown(wait=True)
+    scheduler.shutdown(wait=True)
 
-print('Collection completed!')
+    print('Collection completed!')
+
+
+if __name__ == '__main__':
+    main()
